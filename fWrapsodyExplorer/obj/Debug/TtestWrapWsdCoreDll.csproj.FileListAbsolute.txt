@@ -1,0 +1,17 @@
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\bin\Debug\TtestWrapWsdCoreDll.exe.config
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\bin\Debug\TtestWrapWsdCoreDll.exe
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\bin\Debug\TtestWrapWsdCoreDll.pdb
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\obj\Debug\TtestWrapWsdCoreDll.csprojResolveAssemblyReference.cache
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\obj\Debug\MainWindow.baml
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\obj\Debug\MainWindow.g.cs
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\obj\Debug\App.g.cs
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\obj\Debug\TtestWrapWsdCoreDll_MarkupCompile.cache
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\obj\Debug\TtestWrapWsdCoreDll.g.resources
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\obj\Debug\TtestWrapWsdCoreDll.Properties.Resources.resources
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\obj\Debug\TtestWrapWsdCoreDll.csproj.GenerateResource.Cache
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\obj\Debug\TtestWrapWsdCoreDll.exe
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\obj\Debug\TtestWrapWsdCoreDll.pdb
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\bin\Debug\Fasoo.Wraspsody.Core.Wrapper.dll
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\bin\Debug\PEHeaderReader.dll
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\bin\Debug\Fasoo.Wraspsody.Core.Wrapper.pdb
+D:\Fasoo\source\Wrapsody\Client\trunk\Wrapsody_vs2013\TtestWrapWsdCoreDll\bin\Debug\PEHeaderReader.pdb
