@@ -11,13 +11,14 @@ namespace fWrapsodyExplorer
 	{
 		enum DocumentInfoApi
 		{
-			DOCUMENTINFOAPI_INIT = 0x2000,
-			DOCUMENTINFOAPI_UPDATEALLSYNCINFOS = 0x2001,
-			DOCUMENTINFOAPI_GETSYNCINFO = 0x2002,
-			DOCUMENTINFOAPI_CLEARALLSYNCINFOS = 0x2003,
-			DOCUMENTINFOAPI_CHECKIN = 0x2004,
-			DOCUMENTINFOAPI_UNDOCHECKOUT = 0x2005,
-			DOCUMENTINFOAPI_UNWRAP = 0x2006
+			Init = 0x2000,
+			UpdataSyncInfos = 0x2001,
+			GetSyncInfo = 0x2002,
+			ClearAllSyncInfos = 0x2003,
+			CheckIn = 0x2004,
+			UndoCheckOut = 0x2005,
+			UnWrap = 0x2006,
+			GetSyncList = 0x2007
 		}	
 
 		[UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -45,6 +46,9 @@ namespace fWrapsodyExplorer
 		[UnmanagedFunctionPointer(CallingConvention.StdCall)]
 		public delegate int _UnWrap([MarshalAs(UnmanagedType.LPWStr)] string FilePath);
 
+		[UnmanagedFunctionPointer(CallingConvention.StdCall)]
+		public delegate int _GetSyncList(ref List<String> synclist);
+
 		#region Export Pol Function
 		public Dictionary<uint, System.Delegate> APIs;
 		public _Dllmain Dllmain;
@@ -55,6 +59,7 @@ namespace fWrapsodyExplorer
 		public _CheckIn CheckIn;
 		public _UndoCheckOut UndoCheckOut;
 		public _UnWrap UnWrap;
+		public _GetSyncList GetSyncList;
 		#endregion
 
 		/// <summary>
@@ -104,33 +109,37 @@ namespace fWrapsodyExplorer
 			}
 
 
-			fhmApiAddress = Convert.ToUInt32(DocumentInfoApi.DOCUMENTINFOAPI_INIT);
+			fhmApiAddress = Convert.ToUInt32(DocumentInfoApi.Init);
 			Dllmain(_module, fhmApiID, ref fhmApiAddress);
 			Init = (_Init)Marshal.GetDelegateForFunctionPointer(new IntPtr(fhmApiAddress), typeof(_Init));
 
-			fhmApiAddress = Convert.ToUInt32(DocumentInfoApi.DOCUMENTINFOAPI_UPDATEALLSYNCINFOS);
+			fhmApiAddress = Convert.ToUInt32(DocumentInfoApi.UpdataSyncInfos);
 			Dllmain(_module, fhmApiID, ref fhmApiAddress);
 			UpdateAllSyncInfos = (_UpdateAllSyncInfos)Marshal.GetDelegateForFunctionPointer(new IntPtr(fhmApiAddress), typeof(_UpdateAllSyncInfos));
 
-			fhmApiAddress = Convert.ToUInt32(DocumentInfoApi.DOCUMENTINFOAPI_GETSYNCINFO);
+			fhmApiAddress = Convert.ToUInt32(DocumentInfoApi.GetSyncInfo);
 			Dllmain(_module, fhmApiID, ref fhmApiAddress);
 			GetSyncInfo = (_GetSyncInfo)Marshal.GetDelegateForFunctionPointer(new IntPtr(fhmApiAddress), typeof(_GetSyncInfo));
 
-			fhmApiAddress = Convert.ToUInt32(DocumentInfoApi.DOCUMENTINFOAPI_CLEARALLSYNCINFOS);
+			fhmApiAddress = Convert.ToUInt32(DocumentInfoApi.ClearAllSyncInfos);
 			Dllmain(_module, fhmApiID, ref fhmApiAddress);
 			ClearAllSyncInfos = (_ClearAllSyncInfos)Marshal.GetDelegateForFunctionPointer(new IntPtr(fhmApiAddress), typeof(_ClearAllSyncInfos));
 
-			fhmApiAddress = Convert.ToUInt32(DocumentInfoApi.DOCUMENTINFOAPI_CLEARALLSYNCINFOS);
+			fhmApiAddress = Convert.ToUInt32(DocumentInfoApi.ClearAllSyncInfos);
 			Dllmain(_module, fhmApiID, ref fhmApiAddress);
 			CheckIn = (_CheckIn)Marshal.GetDelegateForFunctionPointer(new IntPtr(fhmApiAddress), typeof(_CheckIn));
 
-			fhmApiAddress = Convert.ToUInt32(DocumentInfoApi.DOCUMENTINFOAPI_CLEARALLSYNCINFOS);
+			fhmApiAddress = Convert.ToUInt32(DocumentInfoApi.ClearAllSyncInfos);
 			Dllmain(_module, fhmApiID, ref fhmApiAddress);
 			UndoCheckOut = (_UndoCheckOut)Marshal.GetDelegateForFunctionPointer(new IntPtr(fhmApiAddress), typeof(_UndoCheckOut));
 
-			fhmApiAddress = Convert.ToUInt32(DocumentInfoApi.DOCUMENTINFOAPI_CLEARALLSYNCINFOS);
+			fhmApiAddress = Convert.ToUInt32(DocumentInfoApi.ClearAllSyncInfos);
 			Dllmain(_module, fhmApiID, ref fhmApiAddress);
 			UnWrap = (_UnWrap)Marshal.GetDelegateForFunctionPointer(new IntPtr(fhmApiAddress), typeof(_UnWrap));
+
+			fhmApiAddress = Convert.ToUInt32(DocumentInfoApi.GetSyncList);
+			Dllmain(_module, fhmApiID, ref fhmApiAddress);
+			GetSyncList = (_GetSyncList)Marshal.GetDelegateForFunctionPointer(new IntPtr(fhmApiAddress), typeof(_GetSyncList));
 
 			if (Init == null
 				|| UpdateAllSyncInfos == null
@@ -138,7 +147,8 @@ namespace fWrapsodyExplorer
 				|| ClearAllSyncInfos == null
 				|| CheckIn == null
 				|| UndoCheckOut == null
-				|| UnWrap == null)
+				|| UnWrap == null
+				|| GetSyncList == null)
 			{
 				return false;
 			}

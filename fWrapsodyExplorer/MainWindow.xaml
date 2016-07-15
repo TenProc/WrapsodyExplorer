@@ -50,7 +50,14 @@
 
         <ListView Grid.Column="1"
                   Grid.Row="1"
-                  x:Name="SyncDocList"/>
+                  x:Name="SyncDocList">
+            <GridView>
+                <GridViewColumn Header="파일 이름" Width="200" DisplayMemberBinding="{Binding fName}"/>
+                <GridViewColumn Header="버전 정보" Width="100" DisplayMemberBinding="{Binding verInfo}"/>
+                <GridViewColumn Header="리비전 상태" Width="100" DisplayMemberBinding="{Binding revStatus}"/>
+                <GridViewColumn Header="파일 경로" Width="300" DisplayMemberBinding="{Binding fPath}"/>
+            </GridView>
+        </ListView>
     </Grid>
 </Window>
 <!--<Grid Grid.Column="1"

@@ -44,13 +44,23 @@ namespace fWrapsodyExplorer
 			DataContext = new MainWindowViewModel();
 			InitializeComponent();
 
-			if(true != wrapDocumentInfo.Initialize())
-			{
-				MessageBox.Show("f_documentinfo initialization failed");
-			}
+			MessageBox.Show("start...");
 
-			SetLanguageDictionary();
-			InitializeControls();
+			try
+			{
+				if(true != wrapDocumentInfo.Initialize())
+				{
+					MessageBox.Show("f_documentinfo initialization failed");
+				}
+			}
+			catch(System.Windows.Markup.XamlParseException e)
+			{
+				MessageBox.Show(e.Message);
+			}
+		
+
+			//SetLanguageDictionary();
+			//InitializeControls();
 		}
 
 		private void SetLanguageDictionary()
@@ -71,36 +81,36 @@ namespace fWrapsodyExplorer
 
 		private void InitializeControls()
 		{
-			var gridView = new GridView();
-			this.SyncDocList.View = gridView;
+			//var gridView = new GridView();
+			//this.SyncDocList.View = gridView;
 
-			gridView.Columns.Add(new GridViewColumn
-			{
-				Header = FindResource("file name").ToString(),
-				DisplayMemberBinding = new Binding("fName")
-			});
-			gridView.Columns[0].Width = 200;
+			//gridView.Columns.Add(new GridViewColumn
+			//{
+			//	Header = FindResource("file name").ToString(),
+			//	DisplayMemberBinding = new Binding("fName")
+			//});
+			//gridView.Columns[0].Width = 200;
 
-			gridView.Columns.Add(new GridViewColumn
-			{
-				Header = FindResource("version info").ToString(),
-				DisplayMemberBinding = new Binding("verInfo")
-			});
-			gridView.Columns[1].Width = 100;
+			//gridView.Columns.Add(new GridViewColumn
+			//{
+			//	Header = FindResource("version info").ToString(),
+			//	DisplayMemberBinding = new Binding("verInfo")
+			//});
+			//gridView.Columns[1].Width = 100;
 
-			gridView.Columns.Add(new GridViewColumn
-			{
-				Header = FindResource("revision status").ToString(),
-				DisplayMemberBinding = new Binding("revStatus")
-			});
-			gridView.Columns[2].Width = 100;
+			//gridView.Columns.Add(new GridViewColumn
+			//{
+			//	Header = FindResource("revision status").ToString(),
+			//	DisplayMemberBinding = new Binding("revStatus")
+			//});
+			//gridView.Columns[2].Width = 100;
 
-			gridView.Columns.Add(new GridViewColumn
-			{
-				Header = FindResource("file path").ToString(),
-				DisplayMemberBinding = new Binding("fPath")
-			});
-			gridView.Columns[3].Width = 300;
+			//gridView.Columns.Add(new GridViewColumn
+			//{
+			//	Header = FindResource("file path").ToString(),
+			//	DisplayMemberBinding = new Binding("fPath")
+			//});
+			//gridView.Columns[3].Width = 300;
 
 		}
 
@@ -109,29 +119,15 @@ namespace fWrapsodyExplorer
 			wrapDocumentInfo.ClearAllSyncInfos();
 			SyncDocList.Items.Clear();
 
-			List<string> filepathlist = new List<string>();
+			List<String> synclist = new List<String>();
+			wrapDocumentInfo.GetSyncList(ref synclist);
 
-			RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\Wrapsody\\Sync");
-			foreach (var v in key.GetSubKeyNames())
+			foreach(var syncPath in synclist)
 			{
-				RegistryKey productKey = key.OpenSubKey(v); //Sync값
-				if (productKey != null)
-				{
-					foreach (var value in productKey.GetSubKeyNames()) //Sync값 Date
-					{
-						RegistryKey SyncSubKey = productKey.OpenSubKey(value);
-						string filepath = SyncSubKey.GetValue(null).ToString();
-						if (File.Exists(filepath))
-						{
-							wrapDocumentInfo.Init(filepath);
-							filepathlist.Add(filepath);
-						}
-					}
-				}
+				wrapDocumentInfo.Init(syncPath.ToString());
 			}
 
 			int ret = 1;
-
 			while (ret == 1)
 			{
 				ret = wrapDocumentInfo.UpdateAllSyncInfos(50);
@@ -141,12 +137,12 @@ namespace fWrapsodyExplorer
 			int LatestRevision = new int();
 			SYNC_USER_INFO userInfo = new SYNC_USER_INFO();
 
-			foreach (var filepath in filepathlist)
+			foreach (var filepath in synclist)
 			{
-				ret = wrapDocumentInfo.GetSyncInfo(filepath, ref CurrentRevision, ref LatestRevision, ref userInfo);
+				ret = wrapDocumentInfo.GetSyncInfo(filepath.ToString(), ref CurrentRevision, ref LatestRevision, ref userInfo);
 				if (ret == 0)
 				{
-					string _filepath = filepath;
+					string _filepath = filepath.ToString();
 					string _revision = String.Format("{0}/{1}", CurrentRevision, LatestRevision);
 					string _statues = String.IsNullOrEmpty(userInfo.userId) ? "" : String.Format("{0}({1})", userInfo.userName, userInfo.userId);
 					this.SyncDocList.Items.Add(new SyncDocListItem
