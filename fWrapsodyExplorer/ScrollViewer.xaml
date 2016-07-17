@@ -1,0 +1,1016 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+
+    <LinearGradientBrush x:Key="VerticalScrollBarBackground"
+                              EndPoint="1,0"
+                              StartPoint="0,0">
+        <GradientStop Color="#E1E1E1"
+                          Offset="0" />
+        <GradientStop Color="#EDEDED"
+                          Offset="0.20" />
+        <GradientStop Color="#EDEDED"
+                          Offset="0.80" />
+        <GradientStop Color="#E3E3E3"
+                          Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ScrollBarDisabledBackground"
+                          Color="#F4F4F4" />
+
+    <Style x:Key="ScrollBarButtonUp"
+                TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+        <Setter Property="Focusable"
+                    Value="false" />
+        <Setter Property="IsTabStop"
+                    Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Grid>
+                        <Border x:Name="Border"
+                                Background="Transparent" />
+                        <Path x:Name="IconArrowDecreasePath"
+                              Opacity="1"
+                              Data="M 337.57757568359375,322 C337.57757568359375,322 334,326 334,326 334,326 341,326 341,326 341,326 337.57757568359375,322 337.57757568359375,322 z"
+                              Height="4"
+                              Stretch="Uniform"
+                              Width="8">
+                            <Path.Fill>
+                                <SolidColorBrush x:Name="ButtonColor"
+                                               Color="#FFCECECE" />
+                            </Path.Fill>
+                        </Path>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true">
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true">
+                            <Setter Property="Fill"
+                                   Value="#888888"
+                                   TargetName="IconArrowDecreasePath" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true">
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="false">
+                            <Setter Property="Opacity"
+                                   Value="0.5"
+                                   TargetName="IconArrowDecreasePath" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ScrollBarButtonDown"
+                TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+        <Setter Property="Focusable"
+                    Value="false" />
+        <Setter Property="IsTabStop"
+                    Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Grid>
+                        <Border x:Name="Border"
+                                Background="Transparent" />
+                        <Path x:Name="IconArrowIncreasePath"
+                              Data="M 337.42242431640625,334 C337.42242431640625,334 341,330 341,330 341,330 334,330 334,330 334,330 337.42242431640625,334 337.42242431640625,334 z"
+                              Height="4"
+                              Stretch="Uniform"
+                              Width="8"
+                              Fill="#FFCECECE" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" />
+                        <Trigger Property="IsMouseOver"
+                                 Value="true">
+                            <Setter Property="Fill"
+                                   Value="#888888"
+                                   TargetName="IconArrowIncreasePath" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" />
+                        <Trigger Property="IsEnabled"
+                                 Value="false">
+                            <Setter Property="Opacity"
+                                   Value="0.5"
+                                   TargetName="IconArrowIncreasePath" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ScrollBarButtonLeft"
+                TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+        <Setter Property="Focusable"
+                    Value="false" />
+        <Setter Property="IsTabStop"
+                    Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Grid>
+                        <Border x:Name="Border"
+                                Background="Transparent" />
+                        <Path x:Name="IconArrowLeftPath"
+                              Data="M 331,327.42242431640625 C331,327.42242431640625 335,331 335,331 335,331 335,324 335,324 335,324 331,327.42242431640625 331,327.42242431640625 z"
+                              Stretch="Uniform"
+                              Height="7"
+                              Width="4"
+                              Fill="#FFCECECE" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" />
+                        <Trigger Property="IsMouseOver"
+                                 Value="true">
+                            <Setter Property="Fill"
+                                   Value="#888888"
+                                   TargetName="IconArrowLeftPath" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" />
+                        <Trigger Property="IsEnabled"
+                                 Value="false">
+                            <Setter Property="Opacity"
+                                   Value="0.5"
+                                   TargetName="IconArrowLeftPath" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ScrollBarButtonRight"
+                TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+        <Setter Property="Focusable"
+                    Value="false" />
+        <Setter Property="IsTabStop"
+                    Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Grid>
+                        <Border x:Name="Border"
+                                Background="Transparent" />
+                        <Path x:Name="IconArrowRightPath"
+                              Data="M 343,327.57757568359375 C343,327.57757568359375 339,324 339,324 339,324 339,331 339,331 339,331 343,327.57757568359375 343,327.57757568359375 z"
+                              Height="7"
+                              Width="4"
+                              Stretch="Uniform"
+                              Fill="#FFCECECE" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" />
+                        <Trigger Property="IsMouseOver"
+                                 Value="true">
+                            <Setter Property="Fill"
+                                   Value="#888888"
+                                   TargetName="IconArrowRightPath" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="true" />
+                        <Trigger Property="IsEnabled"
+                                 Value="false">
+                            <Setter Property="Opacity"
+                                   Value="0.5"
+                                   TargetName="IconArrowRightPath" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="VerticalScrollBarPageButton"
+                TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+        <Setter Property="Background"
+                    Value="Transparent" />
+        <Setter Property="Focusable"
+                    Value="false" />
+        <Setter Property="IsTabStop"
+                    Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Rectangle Fill="Transparent"
+                                Height="{TemplateBinding Height}"
+                                Width="{TemplateBinding Width}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ScrollBarThumbHorizontal"
+                TargetType="{x:Type Thumb}">
+        <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+        <Setter Property="IsTabStop"
+                    Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid x:Name="Grid"
+                           Margin="0,0,0,0">
+                        <Rectangle HorizontalAlignment="Stretch"
+                                   x:Name="Rectangle"
+                                   Opacity="1"
+                                   VerticalAlignment="Stretch"
+                                   Width="Auto"
+                                   Height="Auto"
+                                   Fill="#FFCECECE" />
+
+                        <Rectangle HorizontalAlignment="Stretch"
+                                   x:Name="RectangleOver"
+                                   Opacity="0"
+                                   VerticalAlignment="Stretch"
+                                   Width="Auto"
+                                   Height="Auto"
+                                   Fill="#888888" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused"
+                                 Value="True" />
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="RectangleOver"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="00:00:00.3" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="RectangleOver"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0"
+                                                     Duration="00:00:00.3" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="False">
+                            <Setter Property="Opacity"
+                                   Value="0.5"
+                                   TargetName="Rectangle" />
+                        </Trigger>
+                        <Trigger Property="IsDragging"
+                                 Value="True" />
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ScrollBarThumbVertical"
+                TargetType="{x:Type Thumb}">
+        <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+        <Setter Property="IsTabStop"
+                    Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid x:Name="Grid"
+                           Margin="0,0,0,0">
+                        <Rectangle HorizontalAlignment="Stretch"
+                                   x:Name="Rectangle"
+                                   Opacity="1"
+                                   VerticalAlignment="Stretch"
+                                   Width="Auto"
+                                   Height="Auto"
+                                   Fill="#FFCECECE" />
+
+                        <Rectangle HorizontalAlignment="Stretch"
+                                   x:Name="RectangleOver"
+                                   Opacity="0"
+                                   VerticalAlignment="Stretch"
+                                   Width="Auto"
+                                   Height="Auto"
+                                   Fill="#888888" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused"
+                                 Value="True" />
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="RectangleOver"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="00:00:00.3" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="RectangleOver"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0"
+                                                     Duration="00:00:00.3" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="False">
+                            <Setter Property="Opacity"
+                                   Value="0.5"
+                                   TargetName="Rectangle" />
+                        </Trigger>
+                        <Trigger Property="IsDragging"
+                                 Value="True" />
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <LinearGradientBrush x:Key="HorizontalScrollBarBackground"
+                              EndPoint="0,1"
+                              StartPoint="0,0">
+        <GradientStop Color="#E1E1E1"
+                          Offset="0" />
+        <GradientStop Color="#EDEDED"
+                          Offset="0.20" />
+        <GradientStop Color="#EDEDED"
+                          Offset="0.80" />
+        <GradientStop Color="#E3E3E3"
+                          Offset="1" />
+    </LinearGradientBrush>
+    <Style x:Key="HorizontalScrollBarPageButton"
+                TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+        <Setter Property="Background"
+                    Value="Transparent" />
+        <Setter Property="Focusable"
+                    Value="false" />
+        <Setter Property="IsTabStop"
+                    Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Rectangle Fill="Transparent"
+                                Height="{TemplateBinding Height}"
+                                Width="{TemplateBinding Width}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ScrollBarStyle" TargetType="{x:Type ScrollBar}">
+        <Setter Property="Background"
+                    Value="{StaticResource VerticalScrollBarBackground}" />
+        <Setter Property="Stylus.IsPressAndHoldEnabled"
+                    Value="false" />
+        <Setter Property="Stylus.IsFlicksEnabled"
+                    Value="false" />
+        <Setter Property="Foreground"
+                    Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+        <Setter Property="Width"
+                    Value="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
+        <Setter Property="MinWidth"
+                    Value="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Grid x:Name="Bg"
+                           SnapsToDevicePixels="true">
+                        <Grid.RowDefinitions>
+                            <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}" />
+                            <RowDefinition Height="0.00001*" />
+                            <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}" />
+                        </Grid.RowDefinitions>
+                        <RepeatButton Command="{x:Static ScrollBar.LineUpCommand}"
+                                      Style="{StaticResource ScrollBarButtonUp}" />
+                        <Track x:Name="PART_Track"
+                               IsDirectionReversed="true"
+                               Grid.Row="1">
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}"
+                                            Style="{StaticResource VerticalScrollBarPageButton}" />
+                            </Track.DecreaseRepeatButton>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}"
+                                            Style="{StaticResource VerticalScrollBarPageButton}" />
+                            </Track.IncreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb Style="{StaticResource ScrollBarThumbVertical}"                                     
+                                     Width="7" />
+                            </Track.Thumb>
+                        </Track>
+                        <RepeatButton Command="{x:Static ScrollBar.LineDownCommand}"
+                                      Grid.Row="2"
+                                      Style="{StaticResource ScrollBarButtonDown}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled"
+                                 Value="false">
+                            <Setter Property="Background"
+                                   TargetName="Bg"
+                                   Value="{StaticResource ScrollBarDisabledBackground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Orientation"
+                        Value="Horizontal">
+                <Setter Property="Width"
+                          Value="Auto" />
+                <Setter Property="MinWidth"
+                          Value="0" />
+                <Setter Property="Height"
+                          Value="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarHeightKey}}" />
+                <Setter Property="MinHeight"
+                          Value="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarHeightKey}}" />
+                <Setter Property="Background"
+                          Value="{StaticResource HorizontalScrollBarBackground}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                            <Grid x:Name="Bg"
+                                 SnapsToDevicePixels="true">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition MaxWidth="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarButtonWidthKey}}" />
+                                    <ColumnDefinition Width="0.00001*" />
+                                    <ColumnDefinition MaxWidth="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarButtonWidthKey}}" />
+                                </Grid.ColumnDefinitions>
+                                <RepeatButton Command="{x:Static ScrollBar.LineLeftCommand}"
+                                            Style="{StaticResource ScrollBarButtonLeft}" />
+                                <Track x:Name="PART_Track"
+                                     Grid.Column="1">
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton Command="{x:Static ScrollBar.PageLeftCommand}"
+                                                  Style="{StaticResource HorizontalScrollBarPageButton}" />
+                                    </Track.DecreaseRepeatButton>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton Command="{x:Static ScrollBar.PageRightCommand}"
+                                                  Style="{StaticResource HorizontalScrollBarPageButton}" />
+                                    </Track.IncreaseRepeatButton>
+                                    <Track.Thumb>
+                                        <Thumb Style="{StaticResource ScrollBarThumbHorizontal}"                                           
+                                           Height="7" />
+                                    </Track.Thumb>
+                                </Track>
+                                <RepeatButton Grid.Column="2"
+                                            Command="{x:Static ScrollBar.LineRightCommand}"
+                                            Style="{StaticResource ScrollBarButtonRight}" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled"
+                                       Value="false">
+                                    <Setter Property="Background"
+                                         TargetName="Bg"
+                                         Value="{StaticResource ScrollBarDisabledBackground}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--**************************
+    * STYLE: ScrollViewer
+    ************************** -->
+    <Style TargetType="ScrollViewer"
+          x:Key="LiveExplorerScrollViewerStyle">
+        <Style.Resources>
+            <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource ScrollBarStyle}" />
+        </Style.Resources>
+
+        <Setter Property="HorizontalContentAlignment"
+              Value="Left" />
+
+        <Setter Property="VerticalContentAlignment"
+              Value="Top" />
+
+        <Setter Property="VerticalScrollBarVisibility"
+              Value="Visible" />
+
+        <Setter Property="BorderBrush"
+              Value="Transparent" />
+
+        <Setter Property="BorderThickness"
+              Value="0" />
+
+        <Setter Property="Background"
+              Value="Transparent" />
+    </Style>
+
+
+    <Style x:Key="ScrollBarBaseStyle"
+                TargetType="{x:Type ScrollBar}" />
+
+    <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+    <PathGeometry x:Key="TreeArrow">
+        <PathGeometry.Figures>
+            <PathFigureCollection>
+                <PathFigure IsFilled="True"
+                              StartPoint="0 0"
+                              IsClosed="True">
+                    <PathFigure.Segments>
+                        <PathSegmentCollection>
+                            <LineSegment Point="8 4" />
+                            <LineSegment Point="0 8" />
+                        </PathSegmentCollection>
+                    </PathFigure.Segments>
+                </PathFigure>
+            </PathFigureCollection>
+        </PathGeometry.Figures>
+    </PathGeometry>
+
+    <Style x:Key="ExpandCollapseToggleStyle"
+                TargetType="{x:Type ToggleButton}">
+        <Setter Property="Width"
+                    Value="20" />
+        <Setter Property="Height"
+                    Value="20" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Width="20"
+                             Height="20"
+                             Background="Transparent"
+                             Padding="5,6,3,3">
+                        <Path x:Name="ExpandPath"
+                              Fill="#FFEFAC27"
+                              Stroke="#FFEFAC27"
+                              Data="{StaticResource TreeArrow}">
+                        </Path>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ExpandPath"
+                                   Property="Stroke"
+                                   Value="#FFEFAC27" />
+                            <Setter TargetName="ExpandPath"
+                                   Property="Fill"
+                                   Value="#FFEFAC27" />
+                        </Trigger>
+
+                        <Trigger Property="IsChecked"
+                                 Value="True">
+                            <Setter TargetName="ExpandPath"
+                                   Property="RenderTransform">
+                                <Setter.Value>
+                                    <RotateTransform Angle="90"
+                                                  CenterX="4"
+                                                  CenterY="4" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="ExpandPath"
+                                   Property="Fill"
+                                   Value="#FFEFAC27" />
+                            <Setter TargetName="ExpandPath"
+                                   Property="Stroke"
+                                   Value="#FFEFAC27" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="TreeViewItemTemplate"
+                          TargetType="{x:Type TreeViewItem}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="19"
+                                    Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ToggleButton x:Name="Expander"
+                             Style="{StaticResource ExpandCollapseToggleStyle}"
+                             IsChecked="{Binding Path=IsExpanded,RelativeSource={RelativeSource TemplatedParent}}"
+                             ClickMode="Press" />
+            <Border Name="Bd"
+                       Grid.Column="1"
+                       Background="{TemplateBinding Background}"
+                       BorderBrush="{TemplateBinding BorderBrush}"
+                       BorderThickness="{TemplateBinding BorderThickness}"
+                       Padding="{TemplateBinding Padding}"
+                       SnapsToDevicePixels="true">
+                <ContentPresenter x:Name="PART_Header"
+                                    ContentSource="Header"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            </Border>
+            <ItemsPresenter x:Name="ItemsHost"
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               Grid.ColumnSpan="2" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsExpanded"
+                        Value="false">
+                <Setter TargetName="ItemsHost"
+                          Property="Visibility"
+                          Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="HasItems"
+                        Value="false">
+                <Setter TargetName="Expander"
+                          Property="Visibility"
+                          Value="Hidden" />
+            </Trigger>
+            <Trigger Property="IsSelected"
+                        Value="true">
+                <Setter TargetName="Bd"
+                          Property="Background"
+                          Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                <Setter Property="Foreground"
+                          Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected"
+                                Value="true" />
+                    <Condition Property="IsSelectionActive"
+                                Value="false" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Bd"
+                          Property="Background"
+                          Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+                <Setter Property="Foreground"
+                          Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            </MultiTrigger>
+            <Trigger Property="IsEnabled"
+                        Value="false">
+                <Setter Property="Foreground"
+                          Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="treeItemSuffixStyle"
+                TargetType="TextBlock">
+        <Setter Property="VerticalAlignment"
+                    Value="Center" />
+        <Setter Property="FontFamily"
+                    Value="Segoe" />
+        <Setter Property="FontWeight"
+                    Value="SemiBold" />
+        <Setter Property="FontSize"
+                    Value="12" />
+        <Setter Property="Margin"
+                    Value="5,0,0,0" />
+    </Style>
+
+    <Style x:Key="treeItemNewSuffix"
+                TargetType="TextBlock"
+                BasedOn="{StaticResource treeItemSuffixStyle}">
+        <Setter Property="Text"
+                    Value="New" />
+        <Setter Property="Foreground"
+                    Value="#ea00ff" />
+        <Setter Property="Visibility"
+                    Value="{Binding IsNewFeature, RelativeSource={RelativeSource AncestorType={x:Type TreeViewItem}}, Converter={StaticResource BoolToVisibilityConverter}}" />
+    </Style>
+
+
+    <Style x:Key="treeItemPlusSuffix"
+                TargetType="TextBlock"
+                BasedOn="{StaticResource treeItemSuffixStyle}">
+        <Setter Property="Text"
+                    Value="Plus" />
+        <Setter Property="Foreground"
+                    Value="#06b025" />
+        <Setter Property="Visibility"
+                    Value="{Binding IsPlusOnlyFeature, RelativeSource={RelativeSource AncestorType={x:Type TreeViewItem}}, Converter={StaticResource BoolToVisibilityConverter}}" />
+    </Style>
+
+    <Style x:Key="TreeViewHeaderStyle"
+                TargetType="TreeViewItem">
+        <Style.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}">
+                Transparent
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}">
+                Black
+            </SolidColorBrush>
+        </Style.Resources>
+
+        <Setter Property="FontSize"
+                    Value="30" />
+        <Setter Property="FontFamily"
+                    Value="Segoe UI" />
+        <Setter Property="FontWeight"
+                    Value="Light" />
+        <Setter Property="Foreground"
+                    Value="Black" />
+        <Setter Property="Focusable"
+                    Value="False" />
+        <Setter Property="IsExpanded"
+                    Value="True" />
+        <Setter Property="Template"
+                    Value="{StaticResource TreeViewItemTemplate}" />
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Border x:Name="_treeViewItemBorder">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding}"
+                                      Cursor="Hand"
+                                      Margin="0,0,5,0" />
+                            <TextBlock Style="{StaticResource treeItemNewSuffix}" />
+                            <TextBlock Style="{StaticResource treeItemPlusSuffix}" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ListViewItemStyle"
+           TargetType="ListViewItem">
+
+        <Setter Property="FontSize"
+                    Value="14" />
+        <Setter Property="FontFamily"
+                    Value="Segoe UI" />
+        <Setter Property="FontWeight"
+                    Value="Light" />
+        <Setter Property="Foreground"
+                    Value="Black" />
+    </Style>
+    <Style x:Key="TreeViewSubHeaderStyle"
+                TargetType="TreeViewItem">
+        <Style.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}">
+                Transparent
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}">
+                Black
+            </SolidColorBrush>
+        </Style.Resources>
+
+        <Setter Property="FontSize"
+                    Value="14" />
+        <Setter Property="FontFamily"
+                    Value="Segoe UI" />
+        <Setter Property="FontWeight"
+                    Value="Light" />
+        <Setter Property="Foreground"
+                    Value="Black" />
+        <Setter Property="Template"
+                    Value="{StaticResource TreeViewItemTemplate}" />
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                                Cursor="Hand" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TreeViewItemStyle"
+                TargetType="TreeViewItem">
+        <Style.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}">
+                Transparent
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}">
+                Transparent
+            </SolidColorBrush>
+        </Style.Resources>
+        <Setter Property="FontSize"
+                    Value="14" />
+        <Setter Property="FontFamily"
+                    Value="Segoe UI" />
+        <Setter Property="FontWeight"
+                    Value="Light" />
+        <Setter Property="Foreground"
+                    Value="Black"/>
+        <Setter Property="Template"
+                    Value="{StaticResource TreeViewItemTemplate}" />
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Border x:Name="_treeViewItemBorder">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding}"
+                                      Margin="0,0,5,0" />
+                            <TextBlock Style="{StaticResource treeItemNewSuffix}"/>
+                            <TextBlock Style="{StaticResource treeItemPlusSuffix}"/>
+                        </StackPanel>
+                    </Border>
+                    <DataTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="Background"
+                                   Value="#FF8000"
+                                   TargetName="_treeViewItemBorder" />
+                        </Trigger>
+                    </DataTemplate.Triggers>
+       
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Foreground"
+                        Value="White"/>
+            </Trigger>
+            <Trigger Property="IsSelected"
+                        Value="True">
+                <Setter Property="FontWeight"
+                          Value="Bold" />
+                <!--Value="#efac27"-->
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="TabControlStyle"
+                TargetType="{x:Type TabControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabControl}">
+                    <Grid KeyboardNavigation.TabNavigation="Local">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Title -->
+                        <TextBlock HorizontalAlignment="Left"
+                                   Margin="12,0,0,0"
+                                   VerticalAlignment="Top"
+                                   FontSize="30"
+                                   FontFamily="Segoe UI"
+                                   FontWeight="Light"
+                                   TextAlignment="right"
+                                   Foreground="Black"
+                                   TextTrimming="CharacterEllipsis"
+                                   Text="{Binding View.Title, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+                        <TabPanel Grid.Column="1"
+                                  Margin="0,0,13,0"
+                                  Background="Transparent"
+                                  IsItemsHost="True"
+                                  HorizontalAlignment="Right" />
+                        <ContentPresenter Grid.Row="1"
+                                          Grid.ColumnSpan="2"
+                                          Margin="4"
+                                          ContentSource="SelectedContent" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TabItemStyle"
+                TargetType="{x:Type TabItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Grid Height="33">
+                        <Border x:Name="border"
+                                Background="#e8e8e8"
+                                Margin="3,0,3,0" />
+                        <TextBlock x:Name="textBlock"
+                                   HorizontalAlignment="Center"
+                                   Margin="19,0,19,0"
+                                   VerticalAlignment="Center"
+                                   FontFamily="Segoe UI"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   Foreground="Black"
+                                   Text="{TemplateBinding Header}"
+                                   TextWrapping="Wrap" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected"
+                                 Value="True">
+                            <Setter Property="Background"
+                                   TargetName="border"
+                                   Value="#efac27" />
+                            <Setter Property="Foreground"
+                                   TargetName="textBlock"
+                                   Value="White" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin"
+                    Value="0,0,1,0" />
+    </Style>
+
+    <Style x:Key="GridViewColumnHeaderGripper" TargetType="Thumb">
+        <Setter Property="Width" Value="18"/>
+        <Setter Property="Background" Value="white"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border Padding="{TemplateBinding Padding}"
+              Background="Transparent">
+                        <Rectangle HorizontalAlignment="Center"
+                Width="1"
+                Fill="{TemplateBinding Background}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type GridViewColumnHeader}"
+        TargetType="GridViewColumnHeader">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground"
+              Value="black"/>
+        <Setter Property="FontSize"
+                    Value="14" />
+        <Setter Property="FontFamily"
+                    Value="Segoe UI"/>
+        <Setter Property="FontWeight"
+                    Value="Light"/>
+        <Setter Property="Foreground"
+                    Value="Black"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GridViewColumnHeader">
+                    <Grid>
+                        <Border Name="HeaderBorder"
+                                 BorderThickness="0,0,0,0"
+                             BorderBrush="LightBlue"
+                         Background="white"
+                          Padding="2,0,2,0">
+                            <ContentPresenter Name="HeaderContent"
+                                               Margin="0,0,0,1"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                    </Border>
+                            <Thumb x:Name="PART_HeaderGripper"
+                                                HorizontalAlignment="Right"
+                        Margin="0,0,-9,0"
+                        Style="{StaticResource GridViewColumnHeaderGripper}"/>  
+                        </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="true">
+                            <Setter Property="FontSize"
+                                    Value="17"/>
+                            <Setter Property="FontWeight"
+                                    Value="Bold"/>
+                            <Setter Property="Background" TargetName="HeaderBorder"
+                                    Value="LightBlue"/>
+                            <Setter Property="BorderThickness" TargetName="HeaderBorder"
+                                    Value="1,1,1,1"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
+    
+    

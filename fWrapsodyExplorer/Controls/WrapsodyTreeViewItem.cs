@@ -47,18 +47,6 @@ namespace fWrapsodyExplorer.Controls
 
 		#region SampleType
 
-		public static readonly DependencyProperty SampleTypeProperty = DependencyProperty.Register("SampleType", typeof(Type), typeof(WrapsodyTreeViewItem), new UIPropertyMetadata(null));
-		public Type SampleType
-		{
-			get
-			{
-				return (Type)GetValue(SampleTypeProperty);
-			}
-			set
-			{
-				SetValue(SampleTypeProperty, value);
-			}
-		}
 
 		#endregion //Sample
 
@@ -66,18 +54,11 @@ namespace fWrapsodyExplorer.Controls
 
 		#region Methods
 
-		protected override void OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs e)
-		{
-			if (this.SampleType == null)
-			{
-				this.IsExpanded = !this.IsExpanded;
-			}
-			else
-			{
-				this.IsSelected = true;
-			}
-			e.Handled = true;
-		}
+		//protected override void OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs e)
+		//{
+		//    this.IsSelected = true;
+		//	e.Handled = true;
+		//}
 
 		#endregion 
 

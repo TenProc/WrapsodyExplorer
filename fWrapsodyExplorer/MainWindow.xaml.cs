@@ -18,52 +18,34 @@ using System.IO;
 using System.Threading;
 using fWrapsodyExplorer.Controls;
 using System.Collections.ObjectModel;
+using System.Data.SQLite;
+using System.Data.Linq;
+using fWrapsodyExplorer.Assets;
 
 namespace fWrapsodyExplorer
 {
-	/// <summary>
-	/// MainWindow.xaml에 대한 상호 작용 논리
-	/// </summary>
-	public partial class MainWindow : Window
+
+ 
+    /// <summary>
+    /// MainWindow.xaml에 대한 상호 작용 논리
+    /// </summary>
+    public partial class MainWindow : Window
 	{
-		//public WrapFhm wrapFhm = new WrapFhm();
-		//public WrapPol wrapPol = new WrapPol();
-		//public WrapSynclib wrapSynclib = new WrapSynclib();
-		public WrapDocumentInfo wrapDocumentInfo = new WrapDocumentInfo();
-		
-		public class SyncDocListItem
+        ResourceDictionary controlDictionary = new ResourceDictionary() { Source = new Uri("ScrollViewer.xaml", UriKind.RelativeOrAbsolute) };
+        ResourceDictionary resourceDictionary = new ResourceDictionary() { Source = SetLanguageDictionary() };
+    
+
+        static WrapDocumentInfo wrapDocumentInfo = new WrapDocumentInfo();
+        
+        public MainWindow()
 		{
-			public string fName { get; set; }
-			public string verInfo { get; set; }
-			public string revStatus { get; set; }
-			public string fPath { get; set; }
-		}
-		public MainWindow()
-		{
-			//_treeView.DataContext = new MainWindowViewModel();
-			DataContext = new MainWindowViewModel();
+            DataContext = new MainWindowViewModel();
 			InitializeComponent();
-
-			MessageBox.Show("start...");
-
-			try
-			{
-				if(true != wrapDocumentInfo.Initialize())
-				{
-					MessageBox.Show("f_documentinfo initialization failed");
-				}
-			}
-			catch(System.Windows.Markup.XamlParseException e)
-			{
-				MessageBox.Show(e.Message);
-			}
-		
-
-			//SetLanguageDictionary();
-			//InitializeControls();
+            
+			InitializeControls();
 		}
 
-		private void SetLanguageDictionary()
+		static private Uri SetLanguageDictionary()
 		{
 			ResourceDictionary dict = new ResourceDictionary();
 			switch (Thread.CurrentThread.CurrentCulture.ToString())
@@ -76,61 +58,94 @@ namespace fWrapsodyExplorer
 					dict.Source = new Uri("..\\Resources\\StringResources.en.xaml", UriKind.Relative);
 					break;
 			}
-			this.Resources.MergedDictionaries.Add(dict);
+
+            return dict.Source;
 		}
 
 		private void InitializeControls()
 		{
-			//var gridView = new GridView();
-			//this.SyncDocList.View = gridView;
+            SyncDocListBox.Visibility = Visibility.Collapsed;
 
-			//gridView.Columns.Add(new GridViewColumn
-			//{
-			//	Header = FindResource("file name").ToString(),
-			//	DisplayMemberBinding = new Binding("fName")
-			//});
-			//gridView.Columns[0].Width = 200;
+            var gridView = new GridView();
+            this.SyncDocListView.View = gridView;
 
-			//gridView.Columns.Add(new GridViewColumn
-			//{
-			//	Header = FindResource("version info").ToString(),
-			//	DisplayMemberBinding = new Binding("verInfo")
-			//});
-			//gridView.Columns[1].Width = 100;
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = resourceDictionary["file name"].ToString(),
+                DisplayMemberBinding = new Binding("fName"),
+            });
+            gridView.Columns[0].Width = 200;
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = resourceDictionary["version info"].ToString(),
+                DisplayMemberBinding = new Binding("verInfo")
+            });
+            gridView.Columns[1].Width = 100;
 
-			//gridView.Columns.Add(new GridViewColumn
-			//{
-			//	Header = FindResource("revision status").ToString(),
-			//	DisplayMemberBinding = new Binding("revStatus")
-			//});
-			//gridView.Columns[2].Width = 100;
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = resourceDictionary["revision status"].ToString(),
+                DisplayMemberBinding = new Binding("revStatus")
+            });
+            gridView.Columns[2].Width = 100;
 
-			//gridView.Columns.Add(new GridViewColumn
-			//{
-			//	Header = FindResource("file path").ToString(),
-			//	DisplayMemberBinding = new Binding("fPath")
-			//});
-			//gridView.Columns[3].Width = 300;
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = resourceDictionary["file path"].ToString(),
+                DisplayMemberBinding = new Binding("fPath")
+            });
+            gridView.Columns[3].Width = 300;
 
-		}
+        }
 
 		private void SampleData()
 		{
-			wrapDocumentInfo.ClearAllSyncInfos();
-			SyncDocList.Items.Clear();
 
-			List<String> synclist = new List<String>();
-			wrapDocumentInfo.GetSyncList(ref synclist);
+
+            //wrapDocumentInfo.ClearAllSyncInfos();
+            SyncDocListView.Items.Clear();
+            SyncDocListBox.Items.Clear();
+
+
+            var connection = new SQLiteConnection(@"Data Source=" + Environment.GetEnvironmentVariable("LocalAppData") + @"\Fasoo\f_wsdData.dll");
+            var context = new DataContext(connection);
+
+            var syncSubItems = context.GetTable<DBTableSyncSub>();
+            foreach (DBTableSyncSub syncSubItem in syncSubItems)
+            {
+                SyncDocListBox.Items.Add(new WrapsodyListViewItem
+                {
+                    fName = System.IO.Path.GetFileName(syncSubItem.filePath),
+                    fPath = syncSubItem.filePath,
+                    verInfo = String.Format("{0} / {1}", 1, 10),
+                    fImage = "excel.JPG",
+                    revStatus = @"리비전 가능"
+                 });
+
+               
+                SyncDocListView.Items.Add(new WrapsodyListViewItem
+                {
+                    fName = System.IO.Path.GetFileName(syncSubItem.filePath),
+                    fPath = syncSubItem.filePath,srg
+                    verInfo = String.Format("{0} / {1}", 1, 10),
+                    fImage = "excel.jpg",
+                    revStatus = @"리비전 가능"
+                });
+            }
+
+            return;
+            List<String> synclist = new List<String>();
+			//wrapDocumentInfo.GetSyncList(ref synclist);
 
 			foreach(var syncPath in synclist)
 			{
-				wrapDocumentInfo.Init(syncPath.ToString());
+				//wrapDocumentInfo.Init(syncPath.ToString());
 			}
 
 			int ret = 1;
 			while (ret == 1)
 			{
-				ret = wrapDocumentInfo.UpdateAllSyncInfos(50);
+				//ret = wrapDocumentInfo.UpdateAllSyncInfos(50);
 			}
 
 			int CurrentRevision = new int();
@@ -139,14 +154,14 @@ namespace fWrapsodyExplorer
 
 			foreach (var filepath in synclist)
 			{
-				ret = wrapDocumentInfo.GetSyncInfo(filepath.ToString(), ref CurrentRevision, ref LatestRevision, ref userInfo);
+				//ret = wrapDocumentInfo.GetSyncInfo(filepath.ToString(), ref CurrentRevision, ref LatestRevision, ref userInfo);
 				if (ret == 0)
 				{
 					string _filepath = filepath.ToString();
 					string _revision = String.Format("{0}/{1}", CurrentRevision, LatestRevision);
 					string _statues = String.IsNullOrEmpty(userInfo.userId) ? "" : String.Format("{0}({1})", userInfo.userName, userInfo.userId);
-					this.SyncDocList.Items.Add(new SyncDocListItem
-					{
+					this.SyncDocListView.Items.Add(new WrapsodyListViewItem
+                    {
 						fName = _filepath,
 						verInfo = _revision,
 						revStatus = _statues,
@@ -164,37 +179,60 @@ namespace fWrapsodyExplorer
 
 		private void OnTreeViewSelectionChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
 		{
+            this.UpdateSelectedView(e.NewValue as WrapsodyTreeViewItem);
+        }
 
-		}
-	}
+        private void UpdateSelectedView( WrapsodyTreeViewItem treeViewItem)
+        {
+            SampleData();
+        }
 
-	class MainWindowViewModel
+        private void OnClickedChangeMode(object sender, RoutedEventArgs e)
+        {
+            object o = _treeView.SelectedItem;
+            WrapsodyTreeViewItem _wrapsodytreeitem = o as WrapsodyTreeViewItem;
+            SyncDocListView.Visibility = Visibility.Collapsed;
+            SyncDocListBox.Visibility = Visibility.Visible;
+        }
+    }
+
+    class MainWindowViewModel
 	{
-		public ObservableCollection<WrapsodyTreeViewItem> Tree { get; set; }
+        private ResourceDictionary ControlDictionary = new ResourceDictionary();
+        private ResourceDictionary ResourceDictionary = new ResourceDictionary();
 
-		public MainWindowViewModel()
+        public ObservableCollection<WrapsodyTreeViewItem> Tree { get; set; }
+
+        public MainWindowViewModel()
 		{
-			Tree = new ObservableCollection<WrapsodyTreeViewItem>();
+
+            ControlDictionary.Source = new Uri("ScrollViewer.xaml", UriKind.RelativeOrAbsolute);
+            ResourceDictionary.Source = new Uri("..\\Resources\\StringResources.ko.xaml", UriKind.Relative);
+
+
+            Tree = new ObservableCollection<WrapsodyTreeViewItem>();
 			GetLoadedTreeRoot();
-		}
+        }
 
-		private void GetLoadedTreeRoot()
+
+        /// <summary>
+        /// 왼쪽 트리아이템 뷰 초기화
+        /// </summary>
+        private void GetLoadedTreeRoot()
 		{
-			var ControlDictionary = new ResourceDictionary();
-			var ResourceDictionary = new ResourceDictionary();
-			ControlDictionary.Source = new Uri("ScrollViewer.xaml", UriKind.RelativeOrAbsolute);
-			ResourceDictionary.Source = new Uri("..\\Resources\\StringResources.ko.xaml", UriKind.Relative);
+		
 			
 			var _treeViewHeaderStyle = ControlDictionary["TreeViewHeaderStyle"] as Style;
 			var _treeViewItemStyle = ControlDictionary["TreeViewItemStyle"] as Style;
 			var _treeViewSubHeaderStyle = ControlDictionary["TreeViewSubHeaderStyle"] as Style;
 
-			WrapsodyTreeViewItem parent = new WrapsodyTreeViewItem() { Header = ResourceDictionary["docList"].ToString(), Style = _treeViewHeaderStyle, ItemContainerStyle = _treeViewItemStyle };
+			WrapsodyTreeViewItem parent = new WrapsodyTreeViewItem()
+            { Header = ResourceDictionary["docList"].ToString(), Style = _treeViewHeaderStyle, ItemContainerStyle = _treeViewItemStyle};
 			WrapsodyTreeViewItem parent1 = new WrapsodyTreeViewItem() { Header = ResourceDictionary["Manage group"].ToString(), Style = _treeViewHeaderStyle, ItemContainerStyle = _treeViewItemStyle };
 			WrapsodyTreeViewItem parent2 = new WrapsodyTreeViewItem() { Header = ResourceDictionary["Option"].ToString(), Style = _treeViewHeaderStyle, ItemContainerStyle = _treeViewItemStyle };
-			
 			List<WrapsodyTreeViewItem> listChildItem = new List<WrapsodyTreeViewItem>();
-			listChildItem.Add(new WrapsodyTreeViewItem() { Header = ResourceDictionary["All docs"].ToString() });
+            var temp = new ListView();
+			listChildItem.Add(new WrapsodyTreeViewItem() { Header = ResourceDictionary["All docs"].ToString()});
 			listChildItem.Add(new WrapsodyTreeViewItem() { Header = ResourceDictionary["Revision availble docs"].ToString() });
 			listChildItem.Add(new WrapsodyTreeViewItem() { Header = ResourceDictionary["View available docs"].ToString() });
 			listChildItem.Add(new WrapsodyTreeViewItem() { Header = ResourceDictionary["Revisioning docs"].ToString() });
@@ -219,5 +257,6 @@ namespace fWrapsodyExplorer
 			Tree.Add(parent1);
 			Tree.Add(parent2);
 		}
-	}
+        
+    }
 }

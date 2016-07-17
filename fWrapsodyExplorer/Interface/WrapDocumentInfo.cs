@@ -4,12 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using System.Windows;
 
 namespace fWrapsodyExplorer
 {
 	public class WrapDocumentInfo : BaseWrapper
 	{
-		enum DocumentInfoApi
+        public WrapDocumentInfo()
+        {
+            //if (true != this.Initialize())
+            //{
+            //    MessageBox.Show("f_documentinfo initialization failed");
+            //}
+        }
+        enum DocumentInfoApi
 		{
 			Init = 0x2000,
 			UpdataSyncInfos = 0x2001,

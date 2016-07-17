@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="Close">닫기</system:String>
+    <system:String x:Key="file name">파일 이름</system:String>
+    <system:String x:Key="version info">현재 / 최신</system:String>
+    <system:String x:Key="revision status">리비전 상태</system:String>
+    <system:String x:Key="file path">파일 경로</system:String>
+    <system:String x:Key="docList">문서 리스트</system:String>
+    <system:String x:Key="All docs">모든 문서</system:String>
+    <system:String x:Key="Revision availble docs">리비전 가능 문서</system:String>
+    <system:String x:Key="View available docs">열람 가능 문서</system:String>
+    <system:String x:Key="Revisioning docs">리비전 중인 문서</system:String>
+    <system:String x:Key="Coediting docs">동시편집 중인 문서</system:String>
+    <system:String x:Key="Recent docs">최근에 본 문서</system:String>
+    <system:String x:Key="Manage group">그룹 구성</system:String>
+    <system:String x:Key="Favorite group">관심 그룹</system:String>
+    <system:String x:Key="Tag group">태그 그룹</system:String>
+    <system:String x:Key="Owner group">문서 관리자 그룹</system:String>
+    <system:String x:Key="File id group">파일ID 그룹</system:String>
+    <system:String x:Key="Option">옵션</system:String>
+</ResourceDictionary>
+    
